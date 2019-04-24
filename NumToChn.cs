@@ -19,15 +19,16 @@ namespace ChnNumProc
             string chnStr = "";
             while (num > 0) 
             {
-                Int32 section = num % 100000;
+                Int32 section = num % 10000;
                 if (needZero)
                 {
                     chnStr =chnStr.Insert(0, _chnNumChar[0]);
                 }
-                chnStr = SectionToChinese(section);
+                strIns = SectionToChinese(section);
                 //是否需要节权位
                 strIns += (section != 0) ? _chnUnitSection[unitPos] : _chnUnitSection[0];
                 chnStr = chnStr.Insert(0, strIns);
+                //千位是0需要在下一个section补零
                 needZero = (section < 1000) && (section > 0);
                 num = num / 10000;
                 unitPos++;
@@ -38,6 +39,7 @@ namespace ChnNumProc
 
         public string SectionToChinese(Int32 section)
         {
+            
             string strIns;
             int unitPos = 0;
             bool zero = true;
@@ -63,7 +65,7 @@ namespace ChnNumProc
                 }
 
                 unitPos++;
-                section = section / 10;
+                section = (ushort) (section / 10);
             }
 
             return chnStr;
