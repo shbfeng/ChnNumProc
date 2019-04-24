@@ -11,7 +11,7 @@ namespace ChnNumProc
         private readonly string[] _chnNumChar =  new string []{"零","一", "二", "三", "四", "五", "六", "七", "八", "九"};
         private readonly string[] _chnUnitSection = new string []{"", "万", "亿", "万亿"};
         private readonly string[] _chnUnitChar = new string []{"", "十", "百", "千"};
-        public string NumberToChinese(Int32 num)
+        public string NumberToChinese(int num)
         {
             int unitPos = 0;
             string strIns = "";
@@ -19,7 +19,7 @@ namespace ChnNumProc
             string chnStr = "";
             while (num > 0) 
             {
-                Int32 section = num % 10000;
+                int section = num % 10000;
                 if (needZero)
                 {
                     chnStr =chnStr.Insert(0, _chnNumChar[0]);
@@ -37,7 +37,7 @@ namespace ChnNumProc
             return chnStr;
         }
 
-        public string SectionToChinese(Int32 section)
+        public string SectionToChinese(int section)
         {
             
             string strIns;
@@ -65,7 +65,7 @@ namespace ChnNumProc
                 }
 
                 unitPos++;
-                section = (ushort) (section / 10);
+                section = section / 10;
             }
 
             return chnStr;

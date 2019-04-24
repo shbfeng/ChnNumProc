@@ -38,12 +38,16 @@ namespace ChnNumProc
            
 
         }
+        private void Form1_Activated(object sender, EventArgs e)
+        {
+            InBox.Focus();
+        }
 
         private void Button1_Click(object sender, EventArgs e)
         {
             string box_string = InBox.Text;
 
-            Int32 input_data = System.Convert.ToInt32(box_string); 
+            int input_data = System.Convert.ToInt32(box_string); 
             NumToChn UnumTochn = new NumToChn();
             string result = UnumTochn.NumberToChinese(input_data);
             OutBox.Text = result;
